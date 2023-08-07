@@ -10,16 +10,15 @@ import mysql.connector as sql
 from PIL import Image
 import cv2
 import os
-import matplotlib as plt
+import matplotlib.pyplot as plt
 import re
 
 icon = Image.open("icon.png")
-st.set_page_config(
-    page_title="BizCardX: Extracting Business Card Data with OCR",
+st.set_page_config( page_title="BizCardX: Extracting Business Card Data with OCR",
     layout="wide",
     page_icon=icon,
     initial_sidebar_state="expanded",
-    menu_items={'about': """# This OCR app is created by *logeshwaran C*!"""})
+    menu_items={'About': """# This OCR app is created by *logeshwaran C*!"""})
 st.markdown("<h1 style='text-align: center; color: white;'>BizCardX: Extracting Business Card Data with OCR</h1>",
             unsafe_allow_html=True)
 
@@ -81,6 +80,7 @@ if selected == "Upload & Extract":
             save_this = "D:/project/businessCard/uploaded_cards"
             with open(os.path.join(save_this,uploaded_card.name), "wb") as f:
                 f.write(uploaded_card.getbuffer())
+
         save_card(uploaded_card)
 
         def image_preview(image,res):
@@ -111,7 +111,7 @@ if selected == "Upload & Extract":
             st.markdown("#     ")
             with st.spinner("Please wait processing image..."):
                 st.set_option('deprecation.showPyplotGlobalUse', False)
-                saved_img = os.getcwd()+ "\\" + "uploaded_cards"+ "\\"+ uploaded_card.name
+                saved_img = os.getcwd() + "\\" + "uploaded_cards" + "\\" + uploaded_card.name
                 image = cv2.imread(saved_img)
                 res = reader.readtext(saved_img)
                 st.markdown("### Image Processed and Data Extracted")
