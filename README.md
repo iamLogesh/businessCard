@@ -1,4 +1,4 @@
-# Project Name
+# Extracting Business Card Data with OCR
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/yourusername/your-repo.svg?style=social)](https://github.com/yourusername/your-repo/stargazers)
