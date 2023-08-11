@@ -1,7 +1,5 @@
 import os
-
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
-
 import pandas as pd
 import streamlit as st
 from streamlit_option_menu import option_menu
@@ -14,13 +12,15 @@ import matplotlib.pyplot as plt
 import re
 
 icon = Image.open("icon.png")
+Linkicon = Image.open("Linkedin.png")
 st.set_page_config( page_title="BizCardX: Extracting Business Card Data with OCR",
     layout="wide",
     page_icon=icon,
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="auto",
     menu_items={'About': """# This OCR app is created by *logeshwaran C*!"""})
-st.markdown("<h1 style='text-align: center; color: white;'>BizCardX: Extracting Business Card Data with OCR</h1>",
+st.markdown("<h1 style='text-align: center; color: purple;'>BizCardX: Extracting Business Card Data with OCR</h1>",
             unsafe_allow_html=True)
+
 
 
 def setting_bg():
@@ -30,14 +30,19 @@ def setting_bg():
                      </style>""",unsafe_allow_html=True)
 setting_bg()
 
-selected = option_menu(None, ["Home","Upload & Extract","Modify"],
+with st.sidebar:
+    selected = option_menu(None,
+                       options = ["Home","Upload & Extract","Modify"],
                        icons=["house","cloud-upload","pencil-square"],
                        default_index=0,
                        orientation="horizontal",
-                       styles={"nav-link": {"font-size": "35px", "text-align": "centre", "margin": "0px", "--hover-color": "#6495ED"},
-                               "icon": {"font-size": "35px"},
-                               "container" : {"max-width": "6000px"},
-                               "nav-link-selected": {"background-color": "#6495ED"}})
+                       styles={"nav-link": {"font-size": "15px", "text-align": "left", "margin": "0px", "--hover-color": "#FF5734",
+                                            "padding": "20px 20px","border-radius": "0px","background-colour": "transparent",
+                                            "colur": "#FFFFFF"},
+                               "icon": {"font-size": "24px","margin-right":"10px"},
+                               "container" : {"max-width": "400px","margin":"30px auto"},
+                               "nav-link-selected": {"background-color": "#FF5733","color":"white",
+                                                     "border-radius": "5000px"}})
 reader = easyocr.Reader(['en'])
 
 # CONNECTING WITH MYSQL DATABASE
@@ -67,6 +72,8 @@ mycursor.execute('''CREATE TABLE IF NOT EXISTS card_data
 # HOME MENU
 if selected == "Home":
         st.markdown("## :purple[**Technologies Used :**] Python,easy OCR, Streamlit, SQL, Pandas")
+        st.markdown("<a href='https://www.linkedin.com/in/logeshwaraneee/' class='linkedin-link'>Linkicon</a>",
+                    unsafe_allow_html=True)
 
 
 
